@@ -1,0 +1,3 @@
+# got_quiz.js
+Game of Thrones Quiz in Javascript
+Answers the questions in the alert boxes to test your knowledge on the world of Westeros...
