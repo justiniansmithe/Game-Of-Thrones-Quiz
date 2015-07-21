@@ -1,40 +1,82 @@
-var correct = 0
-var question1 = prompt('What is the name of Jon Snow\'s mother?');
-if ( question1 === 'Lyanna') {
-	document.write("<p>That's right!</p>");
-	correct += 1;
-} 
-var question2 = prompt('What king was killed by a boar?');
-if ( question2 === 'Robert') {
-	document.write("<p>That's right!</p>");
-	correct += 1;
-} 
-var question3 = prompt('Who killed Tywin?');
-if ( question3 === 'Tyrion') {
-	document.write("<p>That's right!</p>");
-	correct += 1;
-} 
-var question4 = prompt('What is Oberyn\'s last name?');
-if ( question4 === 'Martell') {
-	document.write("<p>That's right!</p>");
-	correct += 1;
-} 
-var question5 = prompt('What is coming?');
-if ( question5 === 'Winter') {
-	document.write("<p>That's right!</p>");
-	correct += 1;
+var question; // Code by Justin Smith
+var answer;  
+var response;
+var html = '';
+var right = [];
+var wrong = [];
+
+var correct = 0;
+var questions = [
+	{
+		question: 'What is the name of Jon Snow\'s mother?', 
+		answer: 'Lyanna'
+	},
+	{	
+		question: 'What king was killed by a boar?', 
+		answer: 'Robert',
+	},
+	{	
+		question: 'Who killed Tywin?',
+		answer: 'Tyrion'
+	},
+	{
+		question: 'What is Oberyn\'s last name?',
+		answer: 'Martell'
+	},
+	{
+		question: 'What is coming?', 
+		answer: 'Winter'
+	},
+	{
+		question: 'Who killed Ygritte?', 
+		answer: 'Olly'
+	}
+
+];
+
+function print(message) {
+	var outputDiv = document.getElementById('output');
+	outputDiv.innerHTML = message;
 }
-var question6 = prompt('')
 
-document.write('<p>You got ' + correct + ' right answers</p><b />');
-document.write('<br />');
+function buildList(arr) {
+	var listHTML = '<ol>';
+	for (var i = 0; i < arr.length; i += 1){ 
+		listHTML += '<li>' + arr[i] + '</li>';
+	}
+	listHTML += '</ol>';
+	return listHTML;
+}
 
-if ( correct ===  5){
-	document.write('You\'ve earned yourself a gold crown. The throne is yours...');
-} else if ( correct === 4 || correct === 3){
-	document.write('You\'ve earned yourself a silver crown. You have valor but there is work to be done.');
-} else if ( correct == 1 || correct == 2){
-	document.write('You\'ve earned yourself a bronze crown. Get in line!');
+
+for (var i = 0; i < questions.length; i += 1 ){
+	question = questions[i].question;
+	answer = questions[i].answer;
+	response = prompt(question);
+	if (response === answer){
+		correct += 1;
+		right.push(question);
+	} else {
+		wrong.push(question);
+	}
+}
+
+if (right.length > 0){
+	html += '<h2>You got these questiosn right: </h2>';
+	html += buildList(right);}
+if (wrong.length > 0){
+	html +='<h2>You got these questions wrong:</h2>';
+	html += buildList(wrong);}
+	
+print(html);
+
+
+if ( correct ===  6){
+	document.write('<h1>You\'ve earned yourself a gold crown. The throne is yours...</h1>');
+} else if ( correct === 5 || correct === 4){
+	document.write('<h1>You\'ve earned yourself a silver crown. You have valor but there is work to be done.</h1>');
+} else if ( correct === 3 || correct === 2){
+	document.write('<h1>You\'ve earned yourself a bronze crown. Get in line!</h1>');
 } else {
-	document.write('No crown! Off with your head!');
-}
+	document.write('<h1>No crown! Off with your head!</h1>');
+} 
